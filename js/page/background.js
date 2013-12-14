@@ -3,7 +3,7 @@ chrome.storage.sync.get('privateToken', function(data) {
     privateToken = data.privateToken;
 });
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-    console.log(arguments);
+    // console.log(arguments);
     switch (msg.name) {
         case 'get assets type':
             msg.data.private_token = privateToken;
@@ -14,8 +14,8 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
                 success: function(data) {
                     chrome.tabs.sendMessage(sender.tab.id, {name: 'get assets type success', data: data});
                 },
-                error: function() {
-                    console.log('get assets type fail');
+                error: function(data) {
+                    chrome.tabs.sendMessage(sender.tab.id, {name: 'get assets type failure', data: data});
                 }
             });
             break;
@@ -25,4 +25,12 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
             sendResponse({result: '复制成功'});
             break;
     }
+});
+
+chrome.webRequest.onCompleted.addListener(function(request) {
+    // console.log(request);
+    chrome.tabs.sendMessage(request.tabId, {name: 'file tree requested', data: request});
+}, {
+    urls: ['*://gitlab.alibaba-inc.com/*/refs/*/logs_tree/*'],
+    types: ['xmlhttprequest']
 });

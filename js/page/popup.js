@@ -3,7 +3,10 @@ $(function() {
         var token = $('#private-token').val();
         if (!token) {return;}
         chrome.storage.sync.set({privateToken: token}, function() {
-            console.log('privateToken saved');
+            new Gift.App.Hint({msg: '添加成功', target: '.user-form'});
+            chrome.runtime.getBackgroundPage(function(bgWin) {
+                bgWin.location.reload();
+            });
         });
     });
 });

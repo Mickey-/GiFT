@@ -17,6 +17,7 @@
         "tabs",
         "clipboardWrite",
         "storage",
+        "webRequest",
         "*://gitlab.alibaba-inc.com/"
         // "*://*/*"
     ],
@@ -36,21 +37,22 @@
          */
         {
             "matches": [
-                "*://gitlab.alibaba-inc.com/*/tree/daily/*/build", // http://gitlab.alibaba-inc.com/group/project-name/tree/daily/1.0.0/build
-                "*://gitlab.alibaba-inc.com/*/tree/daily/*/build/", // http://gitlab.alibaba-inc.com/group/project-name/tree/daily/1.0.0/build/
-                "*://gitlab.alibaba-inc.com/*/tree/daily/*/build/*", // http://gitlab.alibaba-inc.com/group/project-name/tree/daily/1.0.0/build/*
-                "*://gitlab.alibaba-inc.com/*/tree/publish/*/build", // http://gitlab.alibaba-inc.com/group/project-name/tree/publish/1.0.0/build
-                "*://gitlab.alibaba-inc.com/*/tree/publish/*/build/", // http://gitlab.alibaba-inc.com/group/project-name/tree/publish/1.0.0/build/
-                "*://gitlab.alibaba-inc.com/*/tree/publish/*/build/*" // http://gitlab.alibaba-inc.com/group/project-name/tree/publish/1.0.0/build/*
+                "*://gitlab.alibaba-inc.com/*"
+                // "*://gitlab.alibaba-inc.com/*/tree/daily/*/build", // http://gitlab.alibaba-inc.com/group/project-name/tree/daily/1.0.0/build
+                // "*://gitlab.alibaba-inc.com/*/tree/daily/*/build/", // http://gitlab.alibaba-inc.com/group/project-name/tree/daily/1.0.0/build/
+                // "*://gitlab.alibaba-inc.com/*/tree/daily/*/build/*", // http://gitlab.alibaba-inc.com/group/project-name/tree/daily/1.0.0/build/*
+                // "*://gitlab.alibaba-inc.com/*/tree/publish/*/build", // http://gitlab.alibaba-inc.com/group/project-name/tree/publish/1.0.0/build
+                // "*://gitlab.alibaba-inc.com/*/tree/publish/*/build/", // http://gitlab.alibaba-inc.com/group/project-name/tree/publish/1.0.0/build/
+                // "*://gitlab.alibaba-inc.com/*/tree/publish/*/build/*" // http://gitlab.alibaba-inc.com/group/project-name/tree/publish/1.0.0/build/*
             ],
             "css": [
                 "css/content/files-tree.css"
             ],
             "js": [
                 "js/lib/jquery-2.0.3.min.js",
+                "js/app/hint.js",
                 "js/content/files-tree.js"
-            ],
-            "run_at": "document_end"
+            ]
         },
         { // 文件源码页面
             "matches": [
@@ -62,6 +64,7 @@
             ],
             "js": [
                 "js/lib/jquery-2.0.3.min.js",
+                "js/app/hint.js",
                 "js/content/files-blob.js"
             ],
             "run_at": "document_end"

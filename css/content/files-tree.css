@@ -1,3 +1,11 @@
 .x-tree-copy {width: 86px;}
 .x-tree-copy .x-copy {visibility: hidden;}
 .tree-item:hover .x-copy {visibility: visible;}
+.x-hint {
+    position: fixed;
+    right: 0;
+    top: 0;
+    color: #fff;
+    padding: 10px 15px;
+    background-color: rgba(0, 0, 0, .8);
+}

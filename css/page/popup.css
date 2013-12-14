@@ -43,3 +43,6 @@
 #use-start:active {
     background-color: #2A79A3;
 }
+.user-form .x-hint {
+    display: inline-block;
+}
