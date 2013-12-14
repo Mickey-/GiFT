@@ -1,0 +1,8 @@
+body {margin: 0; font-size: 13px; line-height: 18px; color: #333; background-color: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+a {color: #08c; text-decoration: none;}
+a:hover, a:focus {color: #005580; text-decoration: underline;}
+/*a:visited {color: #9966cc;}*/
+a, input, textarea, select, button {outline: none;}
+h1, h2, h3, h4, h5, h6 {text-rendering: optimizelegibility;}
+.clearfix:after {visibility: hidden; display: block; height: 0; font-size: 0; content: '\0020'; clear: both;}

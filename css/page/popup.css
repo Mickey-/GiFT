@@ -1,0 +1,45 @@
+.page {
+    width: 400px;
+}
+.page h1 {
+    padding: 0 10px;
+    border-bottom: 1px solid #d4d4d4;
+    color: #474d57;
+    text-shadow: 0 1px 1px #FFF;
+    letter-spacing: -1px;
+    font-size: 18px;
+    line-height: 40px;
+    background-color: #F1F1F1;
+    box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+}
+.user {
+    padding: 10px;
+}
+.user-form {
+    margin-top: 5px;
+}
+#private-token {
+    width: 170px;
+    margin: 0;
+    padding: 5px;
+    color: #555;
+    font-size: 14px;
+    line-height: 1;
+    border: 2px solid #ccc;
+}
+#use-start {
+    height: 31px;
+    padding: 0 20px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 31px;
+    background-color: #2585b5;
+    cursor: pointer;
+    border: none;
+}
+#use-start:hover {
+    background-color: #2fa0bb;
+}
+#use-start:active {
+    background-color: #2A79A3;
+}

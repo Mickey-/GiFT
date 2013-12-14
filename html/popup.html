@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GitLab-CDN</title>
+    <link rel="stylesheet" href="../css/common/reset.css" />
+    <link rel="stylesheet" href="../css/common/common.css" />
+    <link rel="stylesheet" href="../css/page/popup.css" />
+</head>
+<body>
+<div class="page">
+    <h1>Wellcome To GitLab-CDN <span id="user-name"></span></h1>
+    <section class="user">
+        <p>输入Private token马上开始(<a href="http://gitlab.alibaba-inc.com/profile/account" target="_blank">获取</a>)</p>
+        <div class="user-form">
+            <input id="private-token" type="text" />
+            <button id="use-start">Go</button>            
+        </div>
+    </section>
+</div>
+<!--
+  - JavaScript and HTML must be in separate files: see our Content Security
+  - Policy documentation[1] for details and explanation.
+  -
+  - [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html
+ -->
+<script src="../js/lib/jquery-2.0.3.min.js"></script>
+<script src="../js/page/popup.js"></script>
+</body>
+</html>

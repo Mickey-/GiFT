@@ -1,0 +1,3 @@
+.x-tree-copy {width: 86px;}
+.x-tree-copy .x-copy {visibility: hidden;}
+.tree-item:hover .x-copy {visibility: visible;}
