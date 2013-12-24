@@ -19,7 +19,6 @@
         "storage",
         "webRequest",
         "*://gitlab.alibaba-inc.com/"
-        // "*://*/*"
     ],
     "web_accessible_resources": [
         "js/lib/jquery-2.0.3.min.map",
@@ -29,21 +28,9 @@
         "page": "html/background.html"
     },
     "content_scripts": [
-        /**
-         * 文件树页面
-         * 不需要注入的：
-         * http://gitlab.alibaba-inc.com/group/project-name/tree/daily/1.0.0/build-other
-         * http://gitlab.alibaba-inc.com/group/project-name/tree/publish/1.0.0/build-other
-         */
         {
             "matches": [
                 "*://gitlab.alibaba-inc.com/*"
-                // "*://gitlab.alibaba-inc.com/*/tree/daily/*/build", // http://gitlab.alibaba-inc.com/group/project-name/tree/daily/1.0.0/build
-                // "*://gitlab.alibaba-inc.com/*/tree/daily/*/build/", // http://gitlab.alibaba-inc.com/group/project-name/tree/daily/1.0.0/build/
-                // "*://gitlab.alibaba-inc.com/*/tree/daily/*/build/*", // http://gitlab.alibaba-inc.com/group/project-name/tree/daily/1.0.0/build/*
-                // "*://gitlab.alibaba-inc.com/*/tree/publish/*/build", // http://gitlab.alibaba-inc.com/group/project-name/tree/publish/1.0.0/build
-                // "*://gitlab.alibaba-inc.com/*/tree/publish/*/build/", // http://gitlab.alibaba-inc.com/group/project-name/tree/publish/1.0.0/build/
-                // "*://gitlab.alibaba-inc.com/*/tree/publish/*/build/*" // http://gitlab.alibaba-inc.com/group/project-name/tree/publish/1.0.0/build/*
             ],
             "css": [
                 "css/content/files-tree.css"
@@ -54,7 +41,7 @@
                 "js/content/files-tree.js"
             ]
         },
-        { // 文件源码页面
+        {
             "matches": [
                 "*://gitlab.alibaba-inc.com/*/blob/daily/*/build/*",
                 "*://gitlab.alibaba-inc.com/*/blob/publish/*/build/*"
@@ -66,8 +53,7 @@
                 "js/lib/jquery-2.0.3.min.js",
                 "js/app/hint.js",
                 "js/content/files-blob.js"
-            ],
-            "run_at": "document_end"
+            ]
         }
     ]
 }
