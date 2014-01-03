@@ -3,7 +3,7 @@
 
     "name": "GiFT",
     "description": "在使用GitLab时，能够快速复制Assets文件在日常和线上CDN的URL。省去手动拼URL的麻烦。",
-    "version": "0.0.1",
+    "version": "0.0.2",
 
     "browser_action": {
         "default_icon": {
@@ -22,7 +22,8 @@
     ],
     "web_accessible_resources": [
         "js/lib/jquery-2.0.3.min.map",
-        "font/font.woff"
+        "font/font.woff",
+        "img/*"
     ],
     "background": {
         "page": "html/background.html"

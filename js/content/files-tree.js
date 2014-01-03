@@ -1,8 +1,8 @@
 (function() {
     function Tree() {
-        this.nameSpace = $('.project_name').text().replace(/\s/g, '').replace(/\./g, '-');
-        this.projectRef = $('#ref').val();
-        this.version = this.projectRef.split('/')[1];
+        this.nameSpace = $('.project_name').text().replace(/\s/g, '').replace(/\./g, '-'); // sj/qn
+        this.projectRef = $('#ref').val(); // daily/1.4.0
+        this.version = this.projectRef.split('/')[1]; // 1.4.0
         this.assetsHost = (/daily/).test(this.projectRef) ? 'http://g.assets.daily.taobao.net' : 'http://g.tbcdn.cn';
         this.lastLocation = location.href;
         this.assetsType = '';
@@ -14,7 +14,8 @@
             OPERATION: 'OPERATION' // 不覆盖发布
         },
         html: {
-            tree: '<td class="x-tree-copy"><a href="javascript:;" class="btn btn-tiny x-copy">复制CDN地址</a></div></td>',
+            tree: '<td class="x-tree-copy"><a href="javascript:;" class="btn btn-tiny x-copy">复制CDN地址</a><a class="simulate-checkbox x-checkbox" href="javascript:;"></a></td>',
+            treeBatch: '<a href="javascript:;" class="btn btn-tiny x-copy-combo">复制拼接URL</a><a class="simulate-checkbox x-checkbox-all" href="javascript:;"></a>',
             crumb: ''
         },
         init: function() {
@@ -22,19 +23,21 @@
             this.event();
         },
         dom: function() {
+            $('.tree-item:first td:last').addClass('x-tree-copy').append(this.html.treeBatch);
             $('.tree_commit').attr('colspan', '1').parent().append(this.html.tree);
         },
         event: function() {
             var self = this;    
-            $(document).on('click', '.x-copy', function(ev) {
-                var url = $(this).parents('tr').find('a:first   ').attr('href');
-                var override = self.assetsType === self.ASSETS_TYPE.ASSEMBLY;
-                url = url.replace('/tree/' + self.projectRef + '/build', override ? '' : '/' + self.version);
-                url = url.replace('/blob/' + self.projectRef + '/build', override ? '' : '/' + self.version);
-                url = self.assetsHost + url;
-                chrome.runtime.sendMessage({name: 'copy cdn url', data: {url: url}}, function(response) {
-                    new Gift.App.Hint({msg: response.result});
-                });
+            $(document)
+            .on('click', '.x-copy-combo', function(ev) {self.onComboCopy();})
+            .on('click', '.x-copy', function(ev) {self.onSingleCopy($(this).parents('tr'));})
+            .on('click', '.x-checkbox-all', function(ev) {
+                $(this).toggleClass('simulate-checkbox-checked');
+                isChecked = $(this).hasClass('simulate-checkbox-checked');
+                $('.x-checkbox')[isChecked ? 'addClass' : 'removeClass']('simulate-checkbox-checked');
+            })
+            .on('click', '.x-checkbox', function(ev) {
+                $(this).toggleClass('simulate-checkbox-checked');
             });
         },
         onMsg: function() {
@@ -73,6 +76,37 @@
             this.version = this.projectRef.split('/')[1];
             this.assetsHost = (/daily/).test(this.projectRef) ? 'http://g.assets.daily.taobao.net' : 'http://g.tbcdn.cn';
         },
+        
+        onSingleCopy: function($row) {
+            var url = this.urlBody() + this.urlTail($row);
+            this.requestCopy(url);
+        },
+
+        onComboCopy: function() {
+            var self = this; tails = [];
+            $('.x-checkbox.simulate-checkbox-checked').parents('tr').each(function(i, row) {
+                tails.push(self.urlTail($(row)));
+            });
+            self.requestCopy(this.urlBody() + '??' + tails.join(','));
+        },
+
+        requestCopy: function(url) {
+            chrome.runtime.sendMessage({name: 'copy cdn url', data: {url: url}}, function(response) {
+                new Gift.App.Hint({msg: response.result});
+            });
+        },
+
+        // URL构成: host + group + project + version + tail
+        urlBody: function() {
+            var version = this.assetsType === this.ASSETS_TYPE.ASSEMBLY ? '/' : '/' + this.version + '/';
+            return this.assetsHost + '/' + this.nameSpace + version;
+        },
+        urlTail: function($row) {
+            var href = $row.find('a:first').attr('href');
+            var dirtyReg = new RegExp('\\/' + this.nameSpace + '\\/(tree|blob)\\/' + this.projectRef + '\\/build\\/', 'g');
+            return href.replace(dirtyReg, '');
+        },
+
         tryActive: function() {
             if (!(/\/tree\/(daily|publish)\/.+\/build/).test(location.href)) {return;}
             this.getProjectInfo();
