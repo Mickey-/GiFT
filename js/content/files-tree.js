@@ -6,6 +6,9 @@
         this.assetsHost = (/daily/).test(this.projectRef) ? 'http://g.assets.daily.taobao.net' : 'http://g.tbcdn.cn';
         this.lastLocation = location.href;
         this.assetsType = '';
+
+        this.debug = true;
+        this.log(this);
     }
 
     Tree.prototype = {
@@ -112,7 +115,11 @@
             this.getProjectInfo();
             this.getAssetsType();
             this.lastLocation = location.href;
-        }
+        },
+
+        log: function() {
+            if (this.debug) {console.log.apply(console, arguments);}
+        },
     };
 
     var tree = new Tree();

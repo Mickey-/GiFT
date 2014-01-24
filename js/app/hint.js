@@ -17,7 +17,11 @@ Gift.App.Hint.prototype = {
 
     dom: function() {
         $('<p class="x-hint" style="display: none;">' + this.cfg.msg + '</p>')
-            .appendTo(this.cfg.target).fadeIn().delay(this.cfg.last)
-            .fadeOut(function() {$(this).remove();});
+        .appendTo(this.cfg.target)
+        .fadeIn()
+        .delay(this.cfg.last)
+        .fadeOut(function() {
+            $(this).remove();
+        });
     }
 };

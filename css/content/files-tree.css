@@ -1,4 +1,4 @@
-.x-tree-copy {
+.tree-holder .tree-table>tbody>tr>td.x-tree-copy {
     width: 115px;
     padding-left: 0;
     padding-right: 6px;
@@ -25,9 +25,13 @@
 }
 .x-hint {
     position: fixed;
-    right: 0;
-    top: 0;
+    right: 2px;
+    top: 2px;
+    z-index: 10000;
     color: #fff;
     padding: 10px 15px;
     background-color: rgba(0, 0, 0, .8);
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 16px;
 }
