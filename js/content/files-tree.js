@@ -3,7 +3,7 @@
         this.nameSpace = location.pathname.match(/^\/([^\/]+\/[^\/]+)/)[1]; // sj/qn
         this.projectRef = location.pathname.match(/^\/(?:[^\/]+\/){3}([^\/]+\/[^\/]+)/)[1]; // daily/1.4.0
         this.version = this.projectRef.split('/')[1]; // 1.4.0
-        this.assetsHost = (/daily/).test(this.projectRef) ? 'http://g.assets.daily.taobao.net' : 'http://g.tbcdn.cn';
+        this.assetsHost = (/daily/).test(this.projectRef) ? 'http://g.alicdn.daily.taobao.net' : 'http://g.alicdn.com';
         this.lastLocation = location.href;
         this.assetsType = '';
 
@@ -77,7 +77,7 @@
             this.nameSpace = location.pathname.match(/^\/([^\/]+\/[^\/]+)/)[1];
             this.projectRef = location.pathname.match(/^\/(?:[^\/]+\/){3}([^\/]+\/[^\/]+)/)[1];
             this.version = this.projectRef.split('/')[1];
-            this.assetsHost = (/daily/).test(this.projectRef) ? 'http://g.assets.daily.taobao.net' : 'http://g.tbcdn.cn';
+            this.assetsHost = (/daily/).test(this.projectRef) ? 'http://g.alicdn.daily.taobao.net' : 'http://g.alicdn.com';
         },
         
         onSingleCopy: function($row) {
